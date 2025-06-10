@@ -1,5 +1,4 @@
 <?php
-// Встановлюємо кодування для багатобайтових функцій
 mb_internal_encoding("UTF-8");
 setlocale(LC_ALL, 'uk_UA.UTF-8');
 
@@ -153,7 +152,6 @@ private function showReceipt() {
     while (true) {
         $name = trim(readline("Ваше ім'я: "));
 
-        // Перевірка: не пусто і містить хоча б одну літеру (українську або латинську)
         if (empty($name) || !preg_match('/[a-zA-Zа-яА-ЯіІїЇєЄґҐ]/u', $name)) {
             echo "ПОМИЛКА! Ім'я повинно містити хоча б одну літеру\n";
             continue;
@@ -188,7 +186,6 @@ private function showReceipt() {
         }
 
         $trimmed = trim($raw);
-        // Конвертуємо з CP866 у UTF-8; якщо CP1251, заміни на 'CP1251'
         return mb_convert_encoding($trimmed, 'UTF-8', 'CP866');
     }
 
@@ -213,6 +210,5 @@ private function showReceipt() {
     }
 }
 
-// Запуск програми
 $store = new GroceryStore();
 $store->run();
